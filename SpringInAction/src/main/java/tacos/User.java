@@ -18,12 +18,12 @@ import lombok.RequiredArgsConstructor;
 @Data
 @NoArgsConstructor(access=AccessLevel.PRIVATE, force=true)
 @RequiredArgsConstructor
-public class User implements UserDetails {
+public class User implements UserDetails { // user details provides essential imformation which will framework the authenitification process
 
-  private static final long serialVersionUID = 1L;
+  private static final long serialVersionUID = 1L; // declaring an auto incremetion id 
 
   @Id
-  @GeneratedValue(strategy=GenerationType.AUTO)
+  @GeneratedValue(strategy=GenerationType.AUTO) 
   private Long id;
   
   private final String username;
@@ -36,12 +36,12 @@ public class User implements UserDetails {
   private final String phoneNumber;
   
   @Override
-  public Collection<? extends GrantedAuthority> getAuthorities() {
-    return Arrays.asList(new SimpleGrantedAuthority("ROLE_USER"));
+  public Collection<? extends GrantedAuthority> getAuthorities() { // retrieve authorities granted to users
+    return Arrays.asList(new SimpleGrantedAuthority("ROLE_USER")); // if access is granted a ticket is generated so the taco cloud does not disable active user
   }
 
   @Override
-  public boolean isAccountNonExpired() {
+  public boolean isAccountNonExpired() {   // methods that will regualte the access controln
     return true;
   }
 
